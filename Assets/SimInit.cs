@@ -1,32 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class SimInit : MonoBehaviour
 {
-	private const int MAX_MOLECULES = 1500;
+    public int MaxMolecules = 500;
 
-	public GameObject MoleculeAPrefab;
-	public  GameObject Walls;
+    public GameObject MoleculeAPrefab;
+    public GameObject Walls;
 
-	private ArrayList _moleculesA;
+    public void Start()
+    {
+        for ( var i = 0; i < MaxMolecules; i++ ) {
+            Vector3 pos = new Vector3(
+                        Random.Range( -9, 9 ) + ( Random.Range( 0, 1000 ) / 1000 ),
+                        Random.Range( -9, 9 ) + ( Random.Range( 0, 1000 ) / 1000 ),
+                        0 );
 
-	void Start ()
-	{
-		_moleculesA = new ArrayList ();
+            Instantiate( MoleculeAPrefab, pos, Quaternion.identity );
+        }
+    }
 
-		for (var i = 0; i < MAX_MOLECULES; i++) {
-			Vector3 pos = new Vector3 (
-						Random.Range (-9, 9) + (Random.Range (0, 1000) / 1000), 
-						Random.Range (-9, 9) + (Random.Range (0, 1000) / 1000), 
-						0);
-			_moleculesA.Add (Instantiate (MoleculeAPrefab, pos, Quaternion.identity));
-		}
-	}
-
-	void Update()
-	{
-		if (Input.anyKeyDown) {
-			Walls.SetActive(!Walls.activeInHierarchy);
-		}
-	}
+    public void Update()
+    {
+        if ( Input.anyKeyDown ) {
+            Walls.SetActive( !Walls.activeInHierarchy );
+        }
+    }
 }

@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MoleculeA : MonoBehaviour
 {
-	private float MAXSPEED = 500.0f;
+    private const float MAXSPEED = 500.0f;
 
-	void Start ()
-	{
-		rigidbody2D.AddForce (new Vector2 (Random.Range (-MAXSPEED, MAXSPEED), Random.Range (-MAXSPEED, MAXSPEED)));
-	}
+    public void Start()
+    {
+        GetComponent<Rigidbody2D>().AddForce( new Vector2( Random.Range( -MAXSPEED, MAXSPEED ), Random.Range( -MAXSPEED, MAXSPEED ) ) );
+    }
 }
